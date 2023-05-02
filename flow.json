@@ -8,27 +8,6 @@
         "env": []
     },
     {
-        "id": "9079c642ca354d64",
-        "type": "group",
-        "z": "b4b9370fa496a92d",
-        "name": "获取温湿度处理",
-        "style": {
-            "label": true,
-            "color": "#3f93cf",
-            "stroke": "#9363b7"
-        },
-        "nodes": [
-            "8adaee4ecac4b4da",
-            "5a75da0bf13c1171",
-            "c7e9978f3bf248e4",
-            "016565cb9f157507"
-        ],
-        "x": 54,
-        "y": 79,
-        "w": 612,
-        "h": 162
-    },
-    {
         "id": "edc2ff2e7629ee1f",
         "type": "mqtt-broker",
         "name": "emqx的mqtt节点",
@@ -59,7 +38,6 @@
         "id": "8adaee4ecac4b4da",
         "type": "inject",
         "z": "b4b9370fa496a92d",
-        "g": "9079c642ca354d64",
         "name": "获取温湿度数据",
         "props": [
             {
@@ -77,7 +55,7 @@
         "topic": "获取温湿度数据指令",
         "payload": "[1,3,0,0,0,2,196,11]",
         "payloadType": "bin",
-        "x": 180,
+        "x": 160,
         "y": 120,
         "wires": [
             [
@@ -89,7 +67,6 @@
         "id": "5a75da0bf13c1171",
         "type": "mqtt out",
         "z": "b4b9370fa496a92d",
-        "g": "9079c642ca354d64",
         "name": "",
         "topic": "v1/devices/me/rpc/request",
         "qos": "2",
@@ -100,7 +77,7 @@
         "correl": "",
         "expiry": "",
         "broker": "edc2ff2e7629ee1f",
-        "x": 520,
+        "x": 400,
         "y": 120,
         "wires": []
     },
@@ -108,7 +85,6 @@
         "id": "c7e9978f3bf248e4",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
-        "g": "9079c642ca354d64",
         "name": "",
         "topic": "v1/devices/me/telemetry",
         "qos": "2",
@@ -118,38 +94,20 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 190,
-        "y": 200,
+        "x": 170,
+        "y": 180,
         "wires": [
             [
-                "016565cb9f157507",
-                "20c1bf0f53b40bba"
+                "dc5a6b7a4dfb6c54"
             ]
         ]
-    },
-    {
-        "id": "016565cb9f157507",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "g": "9079c642ca354d64",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "20c1bf0f53b40bba",
         "type": "buffer-parser",
         "z": "b4b9370fa496a92d",
-        "name": "",
-        "data": "payload",
+        "name": "数据流解析",
+        "data": "buffers",
         "dataType": "msg",
         "specification": "spec",
         "specificationType": "ui",
@@ -196,11 +154,11 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 330,
-        "y": 360,
+        "x": 550,
+        "y": 180,
         "wires": [
             [
-                "29d416435e5c4a2b"
+                "349631054a07613c"
             ]
         ]
     },
@@ -213,11 +171,100 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 360,
+        "x": 1400,
+        "y": 180,
         "wires": []
+    },
+    {
+        "id": "dc5a6b7a4dfb6c54",
+        "type": "function",
+        "z": "b4b9370fa496a92d",
+        "name": "数据处理",
+        "func": "msg.buffers = msg.payload;\nmsg.count = msg.payload.length;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "20c1bf0f53b40bba"
+            ]
+        ]
+    },
+    {
+        "id": "3bf623869316b8dc",
+        "type": "switch",
+        "z": "b4b9370fa496a92d",
+        "name": "判断数据流格式",
+        "property": "count",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "9",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 180,
+        "wires": [
+            [
+                "abcacca608d4ed7f"
+            ]
+        ]
+    },
+    {
+        "id": "349631054a07613c",
+        "type": "function",
+        "z": "b4b9370fa496a92d",
+        "name": "数据处理",
+        "func": "msg.data = msg.payload;\nmsg.slaveAddress = msg.payload['设备地址'];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "3bf623869316b8dc"
+            ]
+        ]
+    },
+    {
+        "id": "abcacca608d4ed7f",
+        "type": "switch",
+        "z": "b4b9370fa496a92d",
+        "name": "判断数据流第一个字节的设备地址",
+        "property": "slaveAddress",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1160,
+        "y": 180,
+        "wires": [
+            [
+                "29d416435e5c4a2b"
+            ]
+        ]
     }
 ]
