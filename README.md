@@ -1,5 +1,7 @@
-node-red-humiture1
-==================
+node-red-humiture
+=================
+
+温湿度计和光照度计
 
 ### About
 

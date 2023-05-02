@@ -1,8 +1,10 @@
 {
-    "name": "node-red-humiture1",
-    "description": "A Node-RED Project",
+    "name": "node-red-humiture",
+    "description": "温湿度计和光照度计",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-aedes": "0.11.1"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flow.json",
