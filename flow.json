@@ -8,11 +8,25 @@
         "env": []
     },
     {
-        "id": "42ed18ca.652838",
-        "type": "tab",
-        "label": "MB-Read-Write-Servers",
-        "disabled": false,
-        "info": ""
+        "id": "9079c642ca354d64",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "获取温湿度处理",
+        "style": {
+            "label": true,
+            "color": "#3f93cf",
+            "stroke": "#9363b7"
+        },
+        "nodes": [
+            "8adaee4ecac4b4da",
+            "5a75da0bf13c1171",
+            "c7e9978f3bf248e4",
+            "016565cb9f157507"
+        ],
+        "x": 54,
+        "y": 79,
+        "w": 612,
+        "h": 162
     },
     {
         "id": "edc2ff2e7629ee1f",
@@ -45,6 +59,7 @@
         "id": "8adaee4ecac4b4da",
         "type": "inject",
         "z": "b4b9370fa496a92d",
+        "g": "9079c642ca354d64",
         "name": "获取温湿度数据",
         "props": [
             {
@@ -57,13 +72,13 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "获取温湿度数据指令",
         "payload": "[1,3,0,0,0,2,196,11]",
         "payloadType": "bin",
-        "x": 280,
-        "y": 260,
+        "x": 180,
+        "y": 120,
         "wires": [
             [
                 "5a75da0bf13c1171"
@@ -74,6 +89,7 @@
         "id": "5a75da0bf13c1171",
         "type": "mqtt out",
         "z": "b4b9370fa496a92d",
+        "g": "9079c642ca354d64",
         "name": "",
         "topic": "v1/devices/me/rpc/request",
         "qos": "2",
@@ -84,14 +100,15 @@
         "correl": "",
         "expiry": "",
         "broker": "edc2ff2e7629ee1f",
-        "x": 620,
-        "y": 260,
+        "x": 520,
+        "y": 120,
         "wires": []
     },
     {
         "id": "c7e9978f3bf248e4",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
+        "g": "9079c642ca354d64",
         "name": "",
         "topic": "v1/devices/me/telemetry",
         "qos": "2",
@@ -101,11 +118,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 290,
-        "y": 340,
+        "x": 190,
+        "y": 200,
         "wires": [
             [
-                "016565cb9f157507"
+                "016565cb9f157507",
+                "20c1bf0f53b40bba"
             ]
         ]
     },
@@ -113,6 +131,7 @@
         "id": "016565cb9f157507",
         "type": "debug",
         "z": "b4b9370fa496a92d",
+        "g": "9079c642ca354d64",
         "name": "debug 4",
         "active": true,
         "tosidebar": true,
@@ -121,8 +140,84 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 340,
+        "x": 480,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "20c1bf0f53b40bba",
+        "type": "buffer-parser",
+        "z": "b4b9370fa496a92d",
+        "name": "",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int8",
+                "name": "设备地址",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            },
+            {
+                "type": "int8",
+                "name": "功能码",
+                "offset": 1,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            },
+            {
+                "type": "int8",
+                "name": "数据字节数",
+                "offset": 2,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "29d416435e5c4a2b"
+            ]
+        ]
+    },
+    {
+        "id": "29d416435e5c4a2b",
+        "type": "debug",
+        "z": "b4b9370fa496a92d",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 360,
         "wires": []
     }
 ]
