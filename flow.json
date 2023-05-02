@@ -2,7 +2,7 @@
     {
         "id": "b4b9370fa496a92d",
         "type": "tab",
-        "label": "获取温湿度计数据",
+        "label": "获取温湿度计和光照度数据",
         "disabled": false,
         "info": "",
         "env": []
@@ -11,10 +11,12 @@
         "id": "497514fcc2fe5067",
         "type": "group",
         "z": "b4b9370fa496a92d",
-        "name": "",
+        "name": "温湿度数据获取解析示例",
         "style": {
             "stroke": "#ffcf3f",
-            "label": true
+            "label": true,
+            "label-position": "n",
+            "color": "#ffcf3f"
         },
         "nodes": [
             "8adaee4ecac4b4da",
@@ -36,10 +38,12 @@
         "id": "1c33954d1b3f8861",
         "type": "group",
         "z": "b4b9370fa496a92d",
-        "name": "",
+        "name": "光照度数据获取解析示例",
         "style": {
             "stroke": "#9363b7",
-            "label": true
+            "label": true,
+            "label-position": "n",
+            "color": "#9363b7"
         },
         "nodes": [
             "3a53bcf640acb8b4",
@@ -63,7 +67,7 @@
         "name": "emqx的mqtt节点",
         "broker": "127.0.0.1",
         "port": "1884",
-        "clientid": "WS-NR-TEST-CCA2",
+        "clientid": "WS-NR-CLIENT",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
