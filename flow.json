@@ -138,6 +138,24 @@
                 "offsetbit": 0,
                 "scale": "0",
                 "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "温度",
+                "offset": 3,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int16be",
+                "name": "湿度",
+                "offset": 5,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
             }
         ],
         "swap1": "",
@@ -146,7 +164,7 @@
         "swap1Type": "swap",
         "swap2Type": "swap",
         "swap3Type": "swap",
-        "msgProperty": "payload",
+        "msgProperty": "data",
         "msgPropertyType": "str",
         "resultType": "keyvalue",
         "resultTypeType": "return",
@@ -154,7 +172,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 550,
+        "x": 750,
         "y": 180,
         "wires": [
             [
@@ -171,7 +189,7 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
+        "complete": "data",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
@@ -194,7 +212,7 @@
         "y": 180,
         "wires": [
             [
-                "20c1bf0f53b40bba"
+                "3bf623869316b8dc"
             ]
         ]
     },
@@ -215,11 +233,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 900,
+        "x": 560,
         "y": 180,
         "wires": [
             [
-                "abcacca608d4ed7f"
+                "20c1bf0f53b40bba"
             ]
         ]
     },
@@ -228,17 +246,17 @@
         "type": "function",
         "z": "b4b9370fa496a92d",
         "name": "数据处理",
-        "func": "msg.data = msg.payload;\nmsg.slaveAddress = msg.payload['设备地址'];\nreturn msg;",
+        "func": "msg.slaveAddress = msg.data['设备地址'];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
+        "x": 920,
         "y": 180,
         "wires": [
             [
-                "3bf623869316b8dc"
+                "abcacca608d4ed7f"
             ]
         ]
     },
