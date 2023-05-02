@@ -19,7 +19,6 @@
             "color": "#ffcf3f"
         },
         "nodes": [
-            "8adaee4ecac4b4da",
             "5a75da0bf13c1171",
             "c7e9978f3bf248e4",
             "20c1bf0f53b40bba",
@@ -31,7 +30,7 @@
             "1bfa7b4328d4aaf9",
             "3cee25eed797c478"
         ],
-        "x": 34,
+        "x": 194,
         "y": 39,
         "w": 1412,
         "h": 142
@@ -48,7 +47,6 @@
             "color": "#9363b7"
         },
         "nodes": [
-            "3a53bcf640acb8b4",
             "f5aa1fa83d4a7012",
             "896bf0855e6277e9",
             "e42fa0cff1235132",
@@ -60,7 +58,7 @@
             "b7df765fc0f7a872",
             "a167faa7ddba5a83"
         ],
-        "x": 34,
+        "x": 194,
         "y": 219,
         "w": 1412,
         "h": 142
@@ -91,26 +89,6 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "8adaee4ecac4b4da",
-        "type": "inject",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "定时器",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "1bfa7b4328d4aaf9"
-            ]
-        ]
     },
     {
         "id": "5a75da0bf13c1171",
@@ -145,7 +123,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 140,
+        "x": 300,
         "y": 140,
         "wires": [
             [
@@ -224,7 +202,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 720,
+        "x": 880,
         "y": 140,
         "wires": [
             [
@@ -246,7 +224,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1330,
+        "x": 1490,
         "y": 140,
         "wires": []
     },
@@ -262,7 +240,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 480,
         "y": 140,
         "wires": [
             [
@@ -288,7 +266,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 500,
+        "x": 660,
         "y": 140,
         "wires": [
             [
@@ -308,7 +286,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1080,
         "y": 140,
         "wires": [
             [
@@ -334,31 +312,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1120,
+        "x": 1280,
         "y": 140,
         "wires": [
             [
                 "29d416435e5c4a2b"
-            ]
-        ]
-    },
-    {
-        "id": "3a53bcf640acb8b4",
-        "type": "inject",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "定时器",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 130,
-        "y": 260,
-        "wires": [
-            [
-                "b7df765fc0f7a872"
             ]
         ]
     },
@@ -395,7 +353,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 140,
+        "x": 300,
         "y": 320,
         "wires": [
             [
@@ -465,7 +423,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 720,
+        "x": 880,
         "y": 320,
         "wires": [
             [
@@ -487,7 +445,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1330,
+        "x": 1490,
         "y": 320,
         "wires": []
     },
@@ -503,7 +461,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 480,
         "y": 320,
         "wires": [
             [
@@ -529,7 +487,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 500,
+        "x": 660,
         "y": 320,
         "wires": [
             [
@@ -549,7 +507,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1080,
         "y": 320,
         "wires": [
             [
@@ -575,7 +533,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1120,
+        "x": 1280,
         "y": 320,
         "wires": [
             [
@@ -716,6 +674,26 @@
         "wires": [
             [
                 "f5aa1fa83d4a7012"
+            ]
+        ]
+    },
+    {
+        "id": "378f0e748ba13a06",
+        "type": "inject",
+        "z": "b4b9370fa496a92d",
+        "name": "定时器",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "1bfa7b4328d4aaf9",
+                "b7df765fc0f7a872"
             ]
         ]
     }
