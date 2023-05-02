@@ -8,12 +8,19 @@
         "env": []
     },
     {
+        "id": "42ed18ca.652838",
+        "type": "tab",
+        "label": "MB-Read-Write-Servers",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "edc2ff2e7629ee1f",
         "type": "mqtt-broker",
         "name": "emqx的mqtt节点",
         "broker": "127.0.0.1",
         "port": "1884",
-        "clientid": "",
+        "clientid": "NR-A48A",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
@@ -33,93 +40,6 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "1387aa33686906ae",
-        "type": "mqtt-broker",
-        "name": "node-red的mqtt节点",
-        "broker": "127.0.0.1",
-        "port": "1885",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
-        "id": "906cbc0663609e9a",
-        "type": "aedes broker",
-        "z": "b4b9370fa496a92d",
-        "name": "MQTT服务器",
-        "mqtt_port": "1885",
-        "mqtt_ws_bind": "port",
-        "mqtt_ws_port": "",
-        "mqtt_ws_path": "",
-        "cert": "",
-        "key": "",
-        "certname": "",
-        "keyname": "",
-        "persistence_bind": "level",
-        "dburl": "",
-        "usetls": false,
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "61b8ce89ed9ab9c1"
-            ],
-            [
-                "e155f47c72df5940"
-            ]
-        ]
-    },
-    {
-        "id": "61b8ce89ed9ab9c1",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "e155f47c72df5940",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 520,
-        "wires": []
     },
     {
         "id": "8adaee4ecac4b4da",
@@ -146,27 +66,9 @@
         "y": 260,
         "wires": [
             [
-                "0e19099dcc76fa36",
                 "5a75da0bf13c1171"
             ]
         ]
-    },
-    {
-        "id": "0e19099dcc76fa36",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "5a75da0bf13c1171",
@@ -182,8 +84,8 @@
         "correl": "",
         "expiry": "",
         "broker": "edc2ff2e7629ee1f",
-        "x": 580,
-        "y": 160,
+        "x": 620,
+        "y": 260,
         "wires": []
     },
     {
@@ -199,8 +101,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 310,
-        "y": 360,
+        "x": 290,
+        "y": 340,
         "wires": [
             [
                 "016565cb9f157507"
@@ -219,8 +121,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 360,
+        "x": 580,
+        "y": 340,
         "wires": []
     }
 ]
