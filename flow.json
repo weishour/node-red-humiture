@@ -15,7 +15,7 @@
         "category": "network",
         "in": [
             {
-                "x": 40,
+                "x": 60,
                 "y": 60,
                 "wires": [
                     {
@@ -88,34 +88,54 @@
             }
         ],
         "meta": {},
-        "color": "#2196F3",
+        "color": "#a5b4fc",
         "icon": "@bitpoolos/edge-modbus/bitpool.svg"
     },
     {
-        "id": "497514fcc2fe5067",
-        "type": "group",
-        "z": "b4b9370fa496a92d",
-        "name": "温湿度数据获取解析示例",
-        "style": {
-            "stroke": "#ffcf3f",
-            "label": true,
-            "label-position": "n",
-            "color": "#ffcf3f"
-        },
-        "nodes": [
-            "c7e9978f3bf248e4",
-            "20c1bf0f53b40bba",
-            "29d416435e5c4a2b",
-            "dc5a6b7a4dfb6c54",
-            "3bf623869316b8dc",
-            "349631054a07613c",
-            "abcacca608d4ed7f",
-            "0b74790b431f5766"
+        "id": "bbcc705c522737fc",
+        "type": "subflow",
+        "name": "数据包处理",
+        "info": "数据流长度是否有效并且把数据包赋给msg的buffers属性上",
+        "category": "function",
+        "in": [
+            {
+                "x": 60,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "dc5a6b7a4dfb6c54"
+                    }
+                ]
+            }
         ],
-        "x": 194,
-        "y": 39,
-        "w": 1412,
-        "h": 142
+        "out": [
+            {
+                "x": 500,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "3bf623869316b8dc",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "数据包长度",
+                "type": "num",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-cubes",
+                    "type": "spinner",
+                    "opts": {
+                        "min": 1
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#a5b4fc"
     },
     {
         "id": "1c33954d1b3f8861",
@@ -132,16 +152,36 @@
             "896bf0855e6277e9",
             "e42fa0cff1235132",
             "744a0dd9083487ed",
-            "f03825e9f3d608e6",
-            "9ec7cb4f3e164b8a",
-            "391767f7afffaaec",
             "b6add4265a5f0f36",
-            "8bd0c5a936191a8f"
+            "c458a4a7ae8b69dc"
         ],
-        "x": 194,
-        "y": 219,
-        "w": 1412,
-        "h": 142
+        "x": 494,
+        "y": 159,
+        "w": 1032,
+        "h": 82
+    },
+    {
+        "id": "497514fcc2fe5067",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "温湿度数据获取解析示例",
+        "style": {
+            "stroke": "#ffcf3f",
+            "label": true,
+            "label-position": "n",
+            "color": "#ffcf3f"
+        },
+        "nodes": [
+            "c7e9978f3bf248e4",
+            "20c1bf0f53b40bba",
+            "29d416435e5c4a2b",
+            "abcacca608d4ed7f",
+            "1adab7068adf3ca4"
+        ],
+        "x": 494,
+        "y": 39,
+        "w": 1032,
+        "h": 82
     },
     {
         "id": "edc2ff2e7629ee1f",
@@ -215,7 +255,7 @@
         "swap3Type": "swap",
         "msgProperty": "payload",
         "msgPropertyType": "str",
-        "x": 200,
+        "x": 220,
         "y": 60,
         "wires": [
             [
@@ -228,7 +268,7 @@
         "type": "modbus-crc16",
         "z": "a885ccf612a58001",
         "name": "添加CRC校验",
-        "x": 420,
+        "x": 440,
         "y": 60,
         "wires": [
             [
@@ -250,8 +290,262 @@
         "correl": "",
         "expiry": "",
         "broker": "edc2ff2e7629ee1f",
-        "x": 620,
+        "x": 640,
         "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dc5a6b7a4dfb6c54",
+        "type": "function",
+        "z": "bbcc705c522737fc",
+        "name": "数据处理",
+        "func": "msg.buffers = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "3bf623869316b8dc"
+            ]
+        ]
+    },
+    {
+        "id": "3bf623869316b8dc",
+        "type": "switch",
+        "z": "bbcc705c522737fc",
+        "name": "判断数据流长度",
+        "property": "buffers.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "数据包长度",
+                "vt": "env"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "896bf0855e6277e9",
+        "type": "mqtt in",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "光照度网关发送",
+        "topic": "ws/test/a48a/send",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "edc2ff2e7629ee1f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "c458a4a7ae8b69dc"
+            ]
+        ]
+    },
+    {
+        "id": "e42fa0cff1235132",
+        "type": "buffer-parser",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "光照度设备数据解析",
+        "data": "buffers",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int8",
+                "name": "设备地址",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            },
+            {
+                "type": "int8",
+                "name": "功能码",
+                "offset": 1,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            },
+            {
+                "type": "int8",
+                "name": "数据字节数",
+                "offset": 2,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "0",
+                "mask": ""
+            },
+            {
+                "type": "uint32be",
+                "name": "光照度",
+                "offset": 3,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "buffersData",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 1000,
+        "y": 200,
+        "wires": [
+            [
+                "b6add4265a5f0f36"
+            ]
+        ]
+    },
+    {
+        "id": "744a0dd9083487ed",
+        "type": "debug",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "光照度数据",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "buffersData",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "b6add4265a5f0f36",
+        "type": "switch",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "数据包起始数据",
+        "property": "buffersData['设备地址']",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1220,
+        "y": 200,
+        "wires": [
+            [
+                "744a0dd9083487ed"
+            ]
+        ]
+    },
+    {
+        "id": "378f0e748ba13a06",
+        "type": "inject",
+        "z": "b4b9370fa496a92d",
+        "name": "定时器",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "8bd0c5a936191a8f",
+                "0b74790b431f5766"
+            ]
+        ]
+    },
+    {
+        "id": "8bd0c5a936191a8f",
+        "type": "subflow:a885ccf612a58001",
+        "z": "b4b9370fa496a92d",
+        "name": "获取光照度数据",
+        "env": [
+            {
+                "name": "设备地址",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "Start Address",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "主题",
+                "value": "ws/test/a48a/receive",
+                "type": "str"
+            },
+            {
+                "name": "起始-地址",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "读取-数量",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "b",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "name": "a",
+                "value": "21",
+                "type": "num"
+            },
+            {
+                "name": "起始地址",
+                "value": "1211312",
+                "type": "num"
+            },
+            {
+                "name": "读取数量",
+                "value": "1",
+                "type": "num"
+            }
+        ],
+        "x": 300,
+        "y": 160,
         "wires": []
     },
     {
@@ -268,11 +562,11 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 300,
-        "y": 140,
+        "x": 600,
+        "y": 80,
         "wires": [
             [
-                "dc5a6b7a4dfb6c54"
+                "1adab7068adf3ca4"
             ]
         ]
     },
@@ -339,7 +633,7 @@
         "swap1Type": "swap",
         "swap2Type": "swap",
         "swap3Type": "swap",
-        "msgProperty": "data",
+        "msgProperty": "buffersData",
         "msgPropertyType": "str",
         "resultType": "keyvalue",
         "resultTypeType": "return",
@@ -347,11 +641,11 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 880,
-        "y": 140,
+        "x": 1000,
+        "y": 80,
         "wires": [
             [
-                "349631054a07613c"
+                "abcacca608d4ed7f"
             ]
         ]
     },
@@ -365,87 +659,21 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "data",
+        "complete": "buffersData",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1490,
-        "y": 140,
+        "x": 1410,
+        "y": 80,
         "wires": []
-    },
-    {
-        "id": "dc5a6b7a4dfb6c54",
-        "type": "function",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "数据处理",
-        "func": "msg.buffers = msg.payload;\nmsg.count = msg.payload.length;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 140,
-        "wires": [
-            [
-                "3bf623869316b8dc"
-            ]
-        ]
-    },
-    {
-        "id": "3bf623869316b8dc",
-        "type": "switch",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "判断数据流长度",
-        "property": "count",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "9",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 660,
-        "y": 140,
-        "wires": [
-            [
-                "20c1bf0f53b40bba"
-            ]
-        ]
-    },
-    {
-        "id": "349631054a07613c",
-        "type": "function",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "数据处理",
-        "func": "msg.slaveAddress = msg.data['设备地址'];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 140,
-        "wires": [
-            [
-                "abcacca608d4ed7f"
-            ]
-        ]
     },
     {
         "id": "abcacca608d4ed7f",
         "type": "switch",
         "z": "b4b9370fa496a92d",
         "g": "497514fcc2fe5067",
-        "name": "判断数据包是否正确",
-        "property": "slaveAddress",
+        "name": "数据包起始数据",
+        "property": "buffersData['设备地址']",
         "propertyType": "msg",
         "rules": [
             {
@@ -457,8 +685,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1280,
-        "y": 140,
+        "x": 1220,
+        "y": 80,
         "wires": [
             [
                 "29d416435e5c4a2b"
@@ -466,232 +694,9 @@
         ]
     },
     {
-        "id": "896bf0855e6277e9",
-        "type": "mqtt in",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "光照度网关发送",
-        "topic": "ws/test/a48a/send",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "edc2ff2e7629ee1f",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 300,
-        "y": 320,
-        "wires": [
-            [
-                "f03825e9f3d608e6"
-            ]
-        ]
-    },
-    {
-        "id": "e42fa0cff1235132",
-        "type": "buffer-parser",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "光照度设备数据解析",
-        "data": "buffers",
-        "dataType": "msg",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "type": "int8",
-                "name": "设备地址",
-                "offset": 0,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "0",
-                "mask": ""
-            },
-            {
-                "type": "int8",
-                "name": "功能码",
-                "offset": 1,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "0",
-                "mask": ""
-            },
-            {
-                "type": "int8",
-                "name": "数据字节数",
-                "offset": 2,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "0",
-                "mask": ""
-            },
-            {
-                "type": "uint32be",
-                "name": "光照度",
-                "offset": 3,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "/1000",
-                "mask": ""
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "data",
-        "msgPropertyType": "str",
-        "resultType": "keyvalue",
-        "resultTypeType": "return",
-        "multipleResult": false,
-        "fanOutMultipleResult": false,
-        "setTopic": true,
-        "outputs": 1,
-        "x": 880,
-        "y": 320,
-        "wires": [
-            [
-                "391767f7afffaaec"
-            ]
-        ]
-    },
-    {
-        "id": "744a0dd9083487ed",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "光照度数据",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "data",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1490,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "f03825e9f3d608e6",
-        "type": "function",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "数据处理",
-        "func": "msg.buffers = msg.payload;\nmsg.count = msg.payload.length;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 320,
-        "wires": [
-            [
-                "9ec7cb4f3e164b8a"
-            ]
-        ]
-    },
-    {
-        "id": "9ec7cb4f3e164b8a",
-        "type": "switch",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "判断数据流长度",
-        "property": "count",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "9",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 660,
-        "y": 320,
-        "wires": [
-            [
-                "e42fa0cff1235132"
-            ]
-        ]
-    },
-    {
-        "id": "391767f7afffaaec",
-        "type": "function",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "数据处理",
-        "func": "msg.slaveAddress = msg.data['设备地址'];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 320,
-        "wires": [
-            [
-                "b6add4265a5f0f36"
-            ]
-        ]
-    },
-    {
-        "id": "b6add4265a5f0f36",
-        "type": "switch",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "判断数据包是否正确",
-        "property": "slaveAddress",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "2",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 1280,
-        "y": 320,
-        "wires": [
-            [
-                "744a0dd9083487ed"
-            ]
-        ]
-    },
-    {
-        "id": "378f0e748ba13a06",
-        "type": "inject",
-        "z": "b4b9370fa496a92d",
-        "name": "定时器",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 90,
-        "y": 180,
-        "wires": [
-            [
-                "0b74790b431f5766",
-                "8bd0c5a936191a8f"
-            ]
-        ]
-    },
-    {
         "id": "0b74790b431f5766",
         "type": "subflow:a885ccf612a58001",
         "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
         "name": "获取温湿度数据",
         "env": [
             {
@@ -731,64 +736,49 @@
             }
         ],
         "x": 300,
-        "y": 80,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "8bd0c5a936191a8f",
-        "type": "subflow:a885ccf612a58001",
+        "id": "1adab7068adf3ca4",
+        "type": "subflow:bbcc705c522737fc",
         "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "获取光照度数据",
+        "g": "497514fcc2fe5067",
+        "name": "",
         "env": [
             {
-                "name": "设备地址",
-                "value": "2",
-                "type": "num"
-            },
-            {
-                "name": "Start Address",
-                "value": "2",
-                "type": "num"
-            },
-            {
-                "name": "主题",
-                "value": "ws/test/a48a/receive",
-                "type": "str"
-            },
-            {
-                "name": "起始-地址",
-                "value": "1",
-                "type": "num"
-            },
-            {
-                "name": "读取-数量",
-                "value": "1",
-                "type": "num"
-            },
-            {
-                "name": "b",
-                "value": "2",
-                "type": "str"
-            },
-            {
-                "name": "a",
-                "value": "21",
-                "type": "num"
-            },
-            {
-                "name": "起始地址",
-                "value": "1211312",
-                "type": "num"
-            },
-            {
-                "name": "读取数量",
-                "value": "1",
+                "name": "数据包长度",
+                "value": "9",
                 "type": "num"
             }
         ],
-        "x": 300,
-        "y": 260,
-        "wires": []
+        "x": 790,
+        "y": 80,
+        "wires": [
+            [
+                "20c1bf0f53b40bba"
+            ]
+        ]
+    },
+    {
+        "id": "c458a4a7ae8b69dc",
+        "type": "subflow:bbcc705c522737fc",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "",
+        "env": [
+            {
+                "name": "数据包长度",
+                "value": "9",
+                "type": "num"
+            }
+        ],
+        "x": 790,
+        "y": 200,
+        "wires": [
+            [
+                "e42fa0cff1235132"
+            ]
+        ]
     }
 ]
