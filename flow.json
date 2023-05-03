@@ -160,6 +160,58 @@
         "color": "#a5b4fc"
     },
     {
+        "id": "9dcfd15178a871de",
+        "type": "subflow",
+        "name": "保留JSON指定属性",
+        "info": "",
+        "category": "parser",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "a73be57b78e44e07"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 340,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "a73be57b78e44e07",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "props",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-cubes",
+                    "label": {
+                        "zh-CN": "保留的键（逗号分开）"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#a5b4fc",
+        "icon": "font-awesome/fa-filter"
+    },
+    {
         "id": "1c33954d1b3f8861",
         "type": "group",
         "z": "b4b9370fa496a92d",
@@ -167,19 +219,18 @@
         "style": {
             "stroke": "#9363b7",
             "label": true,
-            "label-position": "n",
-            "color": "#9363b7"
+            "color": "#9363b7",
+            "label-position": "n"
         },
         "nodes": [
             "896bf0855e6277e9",
             "e42fa0cff1235132",
-            "744a0dd9083487ed",
             "b6add4265a5f0f36",
             "c458a4a7ae8b69dc"
         ],
-        "x": 454,
-        "y": 159,
-        "w": 1032,
+        "x": 414,
+        "y": 119,
+        "w": 832,
         "h": 82
     },
     {
@@ -190,19 +241,58 @@
         "style": {
             "stroke": "#ffcf3f",
             "label": true,
-            "label-position": "n",
-            "color": "#ffcf3f"
+            "color": "#ffcf3f",
+            "label-position": "n"
         },
         "nodes": [
             "c7e9978f3bf248e4",
             "20c1bf0f53b40bba",
-            "29d416435e5c4a2b",
             "abcacca608d4ed7f",
             "1adab7068adf3ca4"
         ],
-        "x": 454,
-        "y": 39,
-        "w": 1032,
+        "x": 414,
+        "y": 19,
+        "w": 832,
+        "h": 82
+    },
+    {
+        "id": "71d9e95a6fcad008",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "发送到ThingsBoard",
+        "style": {
+            "stroke": "#addb7b",
+            "label": true,
+            "color": "#addb7b",
+            "label-position": "n"
+        },
+        "nodes": [
+            "1fcc407194ba2ba4",
+            "92e7c447c849d547"
+        ],
+        "x": 1274,
+        "y": 19,
+        "w": 452,
+        "h": 82
+    },
+    {
+        "id": "4a57b00d5e73f7ca",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "发送到ThingsBoard",
+        "style": {
+            "stroke": "#addb7b",
+            "label": true,
+            "color": "#addb7b",
+            "label-position": "n"
+        },
+        "nodes": [
+            "eea349c21da567ab",
+            "d0ef76cfe1aea605"
+        ],
+        "x": 1274,
+        "y": 119,
+        "w": 452,
         "h": 82
     },
     {
@@ -212,6 +302,60 @@
         "broker": "127.0.0.1",
         "port": "1884",
         "clientid": "WS-NR-CLIENT",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "46e3e9b14bc5936a",
+        "type": "mqtt-broker",
+        "name": "thingsboard的mqtt节点(cca2-1)",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1b8d30b2c9e534e5",
+        "type": "mqtt-broker",
+        "name": "thingsboard的mqtt节点(a48a-2)",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
@@ -359,6 +503,23 @@
         ]
     },
     {
+        "id": "a73be57b78e44e07",
+        "type": "function",
+        "z": "9dcfd15178a871de",
+        "name": "保留JSON指定属性",
+        "func": "const _ = global.get('lodash');\n\nmsg.parseData = msg.payload;\nmsg.payload = _.pick(msg.payload, _.split(env.get('props'), ','));\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "896bf0855e6277e9",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
@@ -372,8 +533,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 560,
-        "y": 200,
+        "x": 520,
+        "y": 160,
         "wires": [
             [
                 "c458a4a7ae8b69dc"
@@ -434,7 +595,7 @@
         "swap1Type": "swap",
         "swap2Type": "swap",
         "swap3Type": "swap",
-        "msgProperty": "buffersData",
+        "msgProperty": "payload",
         "msgPropertyType": "str",
         "resultType": "keyvalue",
         "resultTypeType": "return",
@@ -442,8 +603,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 960,
-        "y": 200,
+        "x": 920,
+        "y": 160,
         "wires": [
             [
                 "b6add4265a5f0f36"
@@ -451,30 +612,12 @@
         ]
     },
     {
-        "id": "744a0dd9083487ed",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "光照度数据",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "buffersData",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1370,
-        "y": 200,
-        "wires": []
-    },
-    {
         "id": "b6add4265a5f0f36",
         "type": "switch",
         "z": "b4b9370fa496a92d",
         "g": "1c33954d1b3f8861",
         "name": "数据包起始数据",
-        "property": "buffersData['设备地址']",
+        "property": "payload['设备地址']",
         "propertyType": "msg",
         "rules": [
             {
@@ -486,11 +629,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1180,
-        "y": 200,
+        "x": 1140,
+        "y": 160,
         "wires": [
             [
-                "744a0dd9083487ed"
+                "d0ef76cfe1aea605"
             ]
         ]
     },
@@ -500,13 +643,13 @@
         "z": "b4b9370fa496a92d",
         "name": "定时器",
         "props": [],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 110,
-        "y": 140,
+        "x": 100,
+        "y": 100,
         "wires": [
             [
                 "8bd0c5a936191a8f",
@@ -599,8 +742,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 560,
-        "y": 80,
+        "x": 520,
+        "y": 60,
         "wires": [
             [
                 "1adab7068adf3ca4"
@@ -670,7 +813,7 @@
         "swap1Type": "swap",
         "swap2Type": "swap",
         "swap3Type": "swap",
-        "msgProperty": "buffersData",
+        "msgProperty": "payload",
         "msgPropertyType": "str",
         "resultType": "keyvalue",
         "resultTypeType": "return",
@@ -678,8 +821,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 960,
-        "y": 80,
+        "x": 920,
+        "y": 60,
         "wires": [
             [
                 "abcacca608d4ed7f"
@@ -687,30 +830,12 @@
         ]
     },
     {
-        "id": "29d416435e5c4a2b",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "温湿度数据",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "buffersData",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1370,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "abcacca608d4ed7f",
         "type": "switch",
         "z": "b4b9370fa496a92d",
         "g": "497514fcc2fe5067",
         "name": "数据包起始数据",
-        "property": "buffersData['设备地址']",
+        "property": "payload['设备地址']",
         "propertyType": "msg",
         "rules": [
             {
@@ -722,11 +847,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1180,
-        "y": 80,
+        "x": 1140,
+        "y": 60,
         "wires": [
             [
-                "29d416435e5c4a2b"
+                "92e7c447c849d547"
             ]
         ]
     },
@@ -778,7 +903,7 @@
             }
         ],
         "x": 300,
-        "y": 120,
+        "y": 60,
         "wires": []
     },
     {
@@ -799,8 +924,8 @@
                 "type": "num"
             }
         ],
-        "x": 750,
-        "y": 80,
+        "x": 710,
+        "y": 60,
         "wires": [
             [
                 "20c1bf0f53b40bba"
@@ -825,11 +950,101 @@
                 "type": "num"
             }
         ],
-        "x": 750,
-        "y": 200,
+        "x": 710,
+        "y": 160,
         "wires": [
             [
                 "e42fa0cff1235132"
+            ]
+        ]
+    },
+    {
+        "id": "1fcc407194ba2ba4",
+        "type": "mqtt out",
+        "z": "b4b9370fa496a92d",
+        "g": "71d9e95a6fcad008",
+        "name": "",
+        "topic": "ws/devices/cca2-1/telemetry",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "46e3e9b14bc5936a",
+        "x": 1580,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "92e7c447c849d547",
+        "type": "subflow:9dcfd15178a871de",
+        "z": "b4b9370fa496a92d",
+        "g": "71d9e95a6fcad008",
+        "name": "数据过滤",
+        "env": [
+            {
+                "name": "props",
+                "value": "温度,湿度",
+                "type": "str"
+            },
+            {
+                "name": "保留的键",
+                "value": "['温度','湿度']",
+                "type": "str"
+            }
+        ],
+        "x": 1360,
+        "y": 60,
+        "wires": [
+            [
+                "1fcc407194ba2ba4"
+            ]
+        ]
+    },
+    {
+        "id": "eea349c21da567ab",
+        "type": "mqtt out",
+        "z": "b4b9370fa496a92d",
+        "g": "4a57b00d5e73f7ca",
+        "name": "",
+        "topic": "ws/devices/a48a-2/telemetry",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1b8d30b2c9e534e5",
+        "x": 1580,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d0ef76cfe1aea605",
+        "type": "subflow:9dcfd15178a871de",
+        "z": "b4b9370fa496a92d",
+        "g": "4a57b00d5e73f7ca",
+        "name": "数据过滤",
+        "env": [
+            {
+                "name": "props",
+                "value": "光照度",
+                "type": "str"
+            },
+            {
+                "name": "保留的键",
+                "value": "['温度','湿度']",
+                "type": "str"
+            }
+        ],
+        "x": 1360,
+        "y": 160,
+        "wires": [
+            [
+                "eea349c21da567ab"
             ]
         ]
     }

@@ -2,7 +2,10 @@
     "name": "node-red-humiture",
     "description": "温湿度计和光照度计",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-buffer-parser": "3.2.2",
+        "node-red-contrib-lvin-crc16": "1.0.2"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flow.json",
