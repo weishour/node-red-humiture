@@ -8,6 +8,90 @@
         "env": []
     },
     {
+        "id": "a885ccf612a58001",
+        "type": "subflow",
+        "name": "通过MQTT发送Modbus指令数据",
+        "info": "通过MQTT发送Modbus指令从而获取设备数据",
+        "category": "network",
+        "in": [
+            {
+                "x": 40,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "2e52488f6ad914c0"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "设备地址",
+                "type": "num",
+                "value": "1",
+                "ui": {
+                    "type": "spinner",
+                    "opts": {
+                        "min": 0
+                    }
+                }
+            },
+            {
+                "name": "功能码",
+                "type": "num",
+                "value": "3",
+                "ui": {
+                    "type": "spinner",
+                    "opts": {
+                        "min": 1,
+                        "max": 4
+                    }
+                }
+            },
+            {
+                "name": "Start Address",
+                "type": "num",
+                "value": "0",
+                "ui": {
+                    "type": "spinner",
+                    "opts": {
+                        "min": 0
+                    }
+                }
+            },
+            {
+                "name": "Read Number",
+                "type": "num",
+                "value": "2",
+                "ui": {
+                    "type": "spinner",
+                    "opts": {
+                        "min": 1
+                    }
+                }
+            },
+            {
+                "name": "主题",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#2196F3",
+        "icon": "@bitpoolos/edge-modbus/bitpool.svg"
+    },
+    {
         "id": "497514fcc2fe5067",
         "type": "group",
         "z": "b4b9370fa496a92d",
@@ -19,7 +103,6 @@
             "color": "#ffcf3f"
         },
         "nodes": [
-            "5a75da0bf13c1171",
             "c7e9978f3bf248e4",
             "20c1bf0f53b40bba",
             "29d416435e5c4a2b",
@@ -27,8 +110,7 @@
             "3bf623869316b8dc",
             "349631054a07613c",
             "abcacca608d4ed7f",
-            "1bfa7b4328d4aaf9",
-            "3cee25eed797c478"
+            "0b74790b431f5766"
         ],
         "x": 194,
         "y": 39,
@@ -47,7 +129,6 @@
             "color": "#9363b7"
         },
         "nodes": [
-            "f5aa1fa83d4a7012",
             "896bf0855e6277e9",
             "e42fa0cff1235132",
             "744a0dd9083487ed",
@@ -55,8 +136,7 @@
             "9ec7cb4f3e164b8a",
             "391767f7afffaaec",
             "b6add4265a5f0f36",
-            "b7df765fc0f7a872",
-            "a167faa7ddba5a83"
+            "8bd0c5a936191a8f"
         ],
         "x": 194,
         "y": 219,
@@ -91,12 +171,77 @@
         "sessionExpiry": ""
     },
     {
-        "id": "5a75da0bf13c1171",
+        "id": "2e52488f6ad914c0",
+        "type": "buffer-maker",
+        "z": "a885ccf612a58001",
+        "name": "组成Modbus数据指令",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "name": "设备地址",
+                "type": "int8",
+                "length": 1,
+                "dataType": "env",
+                "data": "设备地址"
+            },
+            {
+                "name": "功能码",
+                "type": "int8",
+                "length": 1,
+                "dataType": "env",
+                "data": "功能码"
+            },
+            {
+                "name": "起始地址",
+                "type": "int16be",
+                "length": 1,
+                "dataType": "env",
+                "data": "Start Address"
+            },
+            {
+                "name": "读取数量",
+                "type": "int16be",
+                "length": 1,
+                "dataType": "env",
+                "data": "Read Number"
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "x": 200,
+        "y": 60,
+        "wires": [
+            [
+                "dadaf5fa65d51d1f"
+            ]
+        ]
+    },
+    {
+        "id": "dadaf5fa65d51d1f",
+        "type": "modbus-crc16",
+        "z": "a885ccf612a58001",
+        "name": "添加CRC校验",
+        "x": 420,
+        "y": 60,
+        "wires": [
+            [
+                "e8c2e4a8a66b3fce"
+            ]
+        ]
+    },
+    {
+        "id": "e8c2e4a8a66b3fce",
         "type": "mqtt out",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "",
-        "topic": "ws/test/cca2/receive",
+        "z": "a885ccf612a58001",
+        "name": "设备网关接收",
+        "topic": "${主题}",
         "qos": "2",
         "retain": "false",
         "respTopic": "",
@@ -105,8 +250,8 @@
         "correl": "",
         "expiry": "",
         "broker": "edc2ff2e7629ee1f",
-        "x": 760,
-        "y": 80,
+        "x": 620,
+        "y": 60,
         "wires": []
     },
     {
@@ -321,25 +466,6 @@
         ]
     },
     {
-        "id": "f5aa1fa83d4a7012",
-        "type": "mqtt out",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "",
-        "topic": "ws/test/a48a/receive",
-        "qos": "2",
-        "retain": "false",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "edc2ff2e7629ee1f",
-        "x": 760,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "896bf0855e6277e9",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
@@ -542,142 +668,6 @@
         ]
     },
     {
-        "id": "1bfa7b4328d4aaf9",
-        "type": "buffer-maker",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "获取温湿度数据指令",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "name": "设备地址",
-                "type": "int8",
-                "length": 1,
-                "dataType": "num",
-                "data": "1"
-            },
-            {
-                "name": "功能码",
-                "type": "int8",
-                "length": 1,
-                "dataType": "num",
-                "data": "3"
-            },
-            {
-                "name": "起始地址",
-                "type": "int16be",
-                "length": 1,
-                "dataType": "num",
-                "data": "0"
-            },
-            {
-                "name": "读取数量",
-                "type": "int16be",
-                "length": 1,
-                "dataType": "num",
-                "data": "2"
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "x": 320,
-        "y": 80,
-        "wires": [
-            [
-                "3cee25eed797c478"
-            ]
-        ]
-    },
-    {
-        "id": "3cee25eed797c478",
-        "type": "modbus-crc16",
-        "z": "b4b9370fa496a92d",
-        "g": "497514fcc2fe5067",
-        "name": "",
-        "x": 540,
-        "y": 80,
-        "wires": [
-            [
-                "5a75da0bf13c1171"
-            ]
-        ]
-    },
-    {
-        "id": "b7df765fc0f7a872",
-        "type": "buffer-maker",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "获取光照度数据指令",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "name": "设备地址",
-                "type": "int8",
-                "length": 1,
-                "dataType": "num",
-                "data": "2"
-            },
-            {
-                "name": "功能码",
-                "type": "int8",
-                "length": 1,
-                "dataType": "num",
-                "data": "3"
-            },
-            {
-                "name": "起始地址",
-                "type": "int16be",
-                "length": 1,
-                "dataType": "num",
-                "data": "2"
-            },
-            {
-                "name": "读取数量",
-                "type": "int16be",
-                "length": 1,
-                "dataType": "num",
-                "data": "2"
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "x": 320,
-        "y": 260,
-        "wires": [
-            [
-                "a167faa7ddba5a83"
-            ]
-        ]
-    },
-    {
-        "id": "a167faa7ddba5a83",
-        "type": "modbus-crc16",
-        "z": "b4b9370fa496a92d",
-        "g": "1c33954d1b3f8861",
-        "name": "",
-        "x": 540,
-        "y": 260,
-        "wires": [
-            [
-                "f5aa1fa83d4a7012"
-            ]
-        ]
-    },
-    {
         "id": "378f0e748ba13a06",
         "type": "inject",
         "z": "b4b9370fa496a92d",
@@ -692,9 +682,113 @@
         "y": 180,
         "wires": [
             [
-                "1bfa7b4328d4aaf9",
-                "b7df765fc0f7a872"
+                "0b74790b431f5766",
+                "8bd0c5a936191a8f"
             ]
         ]
+    },
+    {
+        "id": "0b74790b431f5766",
+        "type": "subflow:a885ccf612a58001",
+        "z": "b4b9370fa496a92d",
+        "g": "497514fcc2fe5067",
+        "name": "获取温湿度数据",
+        "env": [
+            {
+                "name": "主题",
+                "value": "ws/test/cca2/receive",
+                "type": "str"
+            },
+            {
+                "name": "起始-地址",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "读取-数量",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "b",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "name": "a",
+                "value": "21",
+                "type": "num"
+            },
+            {
+                "name": "起始地址",
+                "value": "1211312",
+                "type": "num"
+            },
+            {
+                "name": "读取数量",
+                "value": "1",
+                "type": "num"
+            }
+        ],
+        "x": 300,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8bd0c5a936191a8f",
+        "type": "subflow:a885ccf612a58001",
+        "z": "b4b9370fa496a92d",
+        "g": "1c33954d1b3f8861",
+        "name": "获取光照度数据",
+        "env": [
+            {
+                "name": "设备地址",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "Start Address",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "主题",
+                "value": "ws/test/a48a/receive",
+                "type": "str"
+            },
+            {
+                "name": "起始-地址",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "读取-数量",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "b",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "name": "a",
+                "value": "21",
+                "type": "num"
+            },
+            {
+                "name": "起始地址",
+                "value": "1211312",
+                "type": "num"
+            },
+            {
+                "name": "读取数量",
+                "value": "1",
+                "type": "num"
+            }
+        ],
+        "x": 300,
+        "y": 260,
+        "wires": []
     }
 ]
