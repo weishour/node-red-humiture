@@ -27,10 +27,14 @@
         "out": [],
         "env": [
             {
-                "name": "设备地址",
+                "name": "device_address",
                 "type": "num",
                 "value": "1",
                 "ui": {
+                    "icon": "font-awesome/fa-tag",
+                    "label": {
+                        "zh-CN": "设备地址"
+                    },
                     "type": "spinner",
                     "opts": {
                         "min": 0
@@ -38,10 +42,14 @@
                 }
             },
             {
-                "name": "功能码",
+                "name": "function_code",
                 "type": "num",
                 "value": "3",
                 "ui": {
+                    "icon": "font-awesome/fa-tag",
+                    "label": {
+                        "zh-CN": "功能码"
+                    },
                     "type": "spinner",
                     "opts": {
                         "min": 1,
@@ -50,10 +58,14 @@
                 }
             },
             {
-                "name": "Start Address",
+                "name": "start_address",
                 "type": "num",
                 "value": "0",
                 "ui": {
+                    "icon": "font-awesome/fa-tag",
+                    "label": {
+                        "zh-CN": "起始地址"
+                    },
                     "type": "spinner",
                     "opts": {
                         "min": 0
@@ -61,10 +73,14 @@
                 }
             },
             {
-                "name": "Read Number",
+                "name": "read_number",
                 "type": "num",
                 "value": "2",
                 "ui": {
+                    "icon": "font-awesome/fa-tag",
+                    "label": {
+                        "zh-CN": "读取数量"
+                    },
                     "type": "spinner",
                     "opts": {
                         "min": 1
@@ -72,11 +88,14 @@
                 }
             },
             {
-                "name": "主题",
+                "name": "topic",
                 "type": "str",
                 "value": "",
                 "ui": {
                     "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "主题"
+                    },
                     "type": "input",
                     "opts": {
                         "types": [
@@ -122,11 +141,14 @@
         ],
         "env": [
             {
-                "name": "数据包长度",
+                "name": "buffer_length",
                 "type": "num",
                 "value": "",
                 "ui": {
                     "icon": "font-awesome/fa-cubes",
+                    "label": {
+                        "zh-CN": "数据包长度"
+                    },
                     "type": "spinner",
                     "opts": {
                         "min": 1
@@ -155,7 +177,7 @@
             "b6add4265a5f0f36",
             "c458a4a7ae8b69dc"
         ],
-        "x": 494,
+        "x": 454,
         "y": 159,
         "w": 1032,
         "h": 82
@@ -178,7 +200,7 @@
             "abcacca608d4ed7f",
             "1adab7068adf3ca4"
         ],
-        "x": 494,
+        "x": 454,
         "y": 39,
         "w": 1032,
         "h": 82
@@ -223,28 +245,28 @@
                 "type": "int8",
                 "length": 1,
                 "dataType": "env",
-                "data": "设备地址"
+                "data": "device_address"
             },
             {
                 "name": "功能码",
                 "type": "int8",
                 "length": 1,
                 "dataType": "env",
-                "data": "功能码"
+                "data": "function_code"
             },
             {
                 "name": "起始地址",
                 "type": "int16be",
                 "length": 1,
                 "dataType": "env",
-                "data": "Start Address"
+                "data": "start_address"
             },
             {
                 "name": "读取数量",
                 "type": "int16be",
                 "length": 1,
                 "dataType": "env",
-                "data": "Read Number"
+                "data": "read_number"
             }
         ],
         "swap1": "",
@@ -323,7 +345,7 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "数据包长度",
+                "v": "buffer_length",
                 "vt": "env"
             }
         ],
@@ -350,7 +372,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 600,
+        "x": 560,
         "y": 200,
         "wires": [
             [
@@ -420,7 +442,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 1000,
+        "x": 960,
         "y": 200,
         "wires": [
             [
@@ -442,7 +464,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1410,
+        "x": 1370,
         "y": 200,
         "wires": []
     },
@@ -464,7 +486,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1220,
+        "x": 1180,
         "y": 200,
         "wires": [
             [
@@ -498,6 +520,21 @@
         "z": "b4b9370fa496a92d",
         "name": "获取光照度数据",
         "env": [
+            {
+                "name": "device_address",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "start_address",
+                "value": "2",
+                "type": "num"
+            },
+            {
+                "name": "topic",
+                "value": "ws/test/a48a/receive",
+                "type": "str"
+            },
             {
                 "name": "设备地址",
                 "value": "2",
@@ -562,7 +599,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 600,
+        "x": 560,
         "y": 80,
         "wires": [
             [
@@ -641,7 +678,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 1000,
+        "x": 960,
         "y": 80,
         "wires": [
             [
@@ -663,7 +700,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1410,
+        "x": 1370,
         "y": 80,
         "wires": []
     },
@@ -685,7 +722,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1220,
+        "x": 1180,
         "y": 80,
         "wires": [
             [
@@ -699,6 +736,11 @@
         "z": "b4b9370fa496a92d",
         "name": "获取温湿度数据",
         "env": [
+            {
+                "name": "topic",
+                "value": "ws/test/cca2/receive",
+                "type": "str"
+            },
             {
                 "name": "主题",
                 "value": "ws/test/cca2/receive",
@@ -747,12 +789,17 @@
         "name": "",
         "env": [
             {
+                "name": "buffer_length",
+                "value": "9",
+                "type": "num"
+            },
+            {
                 "name": "数据包长度",
                 "value": "9",
                 "type": "num"
             }
         ],
-        "x": 790,
+        "x": 750,
         "y": 80,
         "wires": [
             [
@@ -768,12 +815,17 @@
         "name": "",
         "env": [
             {
+                "name": "buffer_length",
+                "value": "9",
+                "type": "num"
+            },
+            {
                 "name": "数据包长度",
                 "value": "9",
                 "type": "num"
             }
         ],
-        "x": 790,
+        "x": 750,
         "y": 200,
         "wires": [
             [
