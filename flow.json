@@ -108,7 +108,17 @@
         ],
         "meta": {},
         "color": "#a5b4fc",
-        "icon": "@bitpoolos/edge-modbus/bitpool.svg"
+        "icon": "@bitpoolos/edge-modbus/bitpool.svg",
+        "status": {
+            "x": 980,
+            "y": 60,
+            "wires": [
+                {
+                    "id": "335f9c0b0127e39b",
+                    "port": 0
+                }
+            ]
+        }
     },
     {
         "id": "bbcc705c522737fc",
@@ -461,6 +471,20 @@
         "wires": []
     },
     {
+        "id": "335f9c0b0127e39b",
+        "type": "status",
+        "z": "a885ccf612a58001",
+        "name": "设备网关连接状态",
+        "scope": [
+            "e8c2e4a8a66b3fce"
+        ],
+        "x": 830,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "dc5a6b7a4dfb6c54",
         "type": "function",
         "z": "bbcc705c522737fc",
@@ -643,12 +667,12 @@
         "z": "b4b9370fa496a92d",
         "name": "定时器",
         "props": [],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 100,
+        "x": 90,
         "y": 100,
         "wires": [
             [
