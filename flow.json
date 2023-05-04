@@ -238,7 +238,7 @@
             "b6add4265a5f0f36",
             "c458a4a7ae8b69dc"
         ],
-        "x": 414,
+        "x": 474,
         "y": 119,
         "w": 832,
         "h": 82
@@ -260,7 +260,7 @@
             "abcacca608d4ed7f",
             "1adab7068adf3ca4"
         ],
-        "x": 414,
+        "x": 474,
         "y": 19,
         "w": 832,
         "h": 82
@@ -280,7 +280,7 @@
             "1fcc407194ba2ba4",
             "92e7c447c849d547"
         ],
-        "x": 1274,
+        "x": 1334,
         "y": 19,
         "w": 452,
         "h": 82
@@ -300,10 +300,33 @@
             "eea349c21da567ab",
             "d0ef76cfe1aea605"
         ],
-        "x": 1274,
+        "x": 1334,
         "y": 119,
         "w": 452,
         "h": 82
+    },
+    {
+        "id": "4fdb42501c6eb39c",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "378f0e748ba13a06",
+            "8bd0c5a936191a8f",
+            "0b74790b431f5766"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 412,
+        "h": 182
     },
     {
         "id": "edc2ff2e7629ee1f",
@@ -557,7 +580,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 520,
+        "x": 580,
         "y": 160,
         "wires": [
             [
@@ -627,7 +650,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 920,
+        "x": 980,
         "y": 160,
         "wires": [
             [
@@ -653,7 +676,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1140,
+        "x": 1200,
         "y": 160,
         "wires": [
             [
@@ -665,6 +688,7 @@
         "id": "378f0e748ba13a06",
         "type": "inject",
         "z": "b4b9370fa496a92d",
+        "g": "4fdb42501c6eb39c",
         "name": "定时器",
         "props": [],
         "repeat": "",
@@ -672,7 +696,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 90,
+        "x": 130,
         "y": 100,
         "wires": [
             [
@@ -685,6 +709,7 @@
         "id": "8bd0c5a936191a8f",
         "type": "subflow:a885ccf612a58001",
         "z": "b4b9370fa496a92d",
+        "g": "4fdb42501c6eb39c",
         "name": "获取光照度数据",
         "env": [
             {
@@ -748,7 +773,7 @@
                 "type": "num"
             }
         ],
-        "x": 300,
+        "x": 340,
         "y": 160,
         "wires": []
     },
@@ -766,7 +791,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 520,
+        "x": 580,
         "y": 60,
         "wires": [
             [
@@ -845,7 +870,7 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 920,
+        "x": 980,
         "y": 60,
         "wires": [
             [
@@ -871,7 +896,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1140,
+        "x": 1200,
         "y": 60,
         "wires": [
             [
@@ -883,6 +908,7 @@
         "id": "0b74790b431f5766",
         "type": "subflow:a885ccf612a58001",
         "z": "b4b9370fa496a92d",
+        "g": "4fdb42501c6eb39c",
         "name": "获取温湿度数据",
         "env": [
             {
@@ -926,7 +952,7 @@
                 "type": "num"
             }
         ],
-        "x": 300,
+        "x": 340,
         "y": 60,
         "wires": []
     },
@@ -948,7 +974,7 @@
                 "type": "num"
             }
         ],
-        "x": 710,
+        "x": 770,
         "y": 60,
         "wires": [
             [
@@ -974,7 +1000,7 @@
                 "type": "num"
             }
         ],
-        "x": 710,
+        "x": 770,
         "y": 160,
         "wires": [
             [
@@ -997,7 +1023,7 @@
         "correl": "",
         "expiry": "",
         "broker": "46e3e9b14bc5936a",
-        "x": 1580,
+        "x": 1640,
         "y": 60,
         "wires": []
     },
@@ -1019,7 +1045,7 @@
                 "type": "str"
             }
         ],
-        "x": 1360,
+        "x": 1420,
         "y": 60,
         "wires": [
             [
@@ -1042,7 +1068,7 @@
         "correl": "",
         "expiry": "",
         "broker": "1b8d30b2c9e534e5",
-        "x": 1580,
+        "x": 1640,
         "y": 160,
         "wires": []
     },
@@ -1064,7 +1090,7 @@
                 "type": "str"
             }
         ],
-        "x": 1360,
+        "x": 1420,
         "y": 160,
         "wires": [
             [
