@@ -225,6 +225,7 @@
         "id": "1c33954d1b3f8861",
         "type": "group",
         "z": "b4b9370fa496a92d",
+        "g": "9fbcae5da98d5adf",
         "name": "光照度数据获取解析示例",
         "style": {
             "stroke": "#9363b7",
@@ -238,8 +239,8 @@
             "b6add4265a5f0f36",
             "c458a4a7ae8b69dc"
         ],
-        "x": 474,
-        "y": 119,
+        "x": 54,
+        "y": 359,
         "w": 832,
         "h": 82
     },
@@ -247,6 +248,7 @@
         "id": "497514fcc2fe5067",
         "type": "group",
         "z": "b4b9370fa496a92d",
+        "g": "9fbcae5da98d5adf",
         "name": "温湿度数据获取解析示例",
         "style": {
             "stroke": "#ffcf3f",
@@ -260,8 +262,8 @@
             "abcacca608d4ed7f",
             "1adab7068adf3ca4"
         ],
-        "x": 474,
-        "y": 19,
+        "x": 54,
+        "y": 259,
         "w": 832,
         "h": 82
     },
@@ -269,6 +271,7 @@
         "id": "71d9e95a6fcad008",
         "type": "group",
         "z": "b4b9370fa496a92d",
+        "g": "9fbcae5da98d5adf",
         "name": "发送到ThingsBoard",
         "style": {
             "stroke": "#addb7b",
@@ -280,8 +283,8 @@
             "1fcc407194ba2ba4",
             "92e7c447c849d547"
         ],
-        "x": 1334,
-        "y": 19,
+        "x": 914,
+        "y": 259,
         "w": 452,
         "h": 82
     },
@@ -289,6 +292,7 @@
         "id": "4a57b00d5e73f7ca",
         "type": "group",
         "z": "b4b9370fa496a92d",
+        "g": "9fbcae5da98d5adf",
         "name": "发送到ThingsBoard",
         "style": {
             "stroke": "#addb7b",
@@ -300,8 +304,8 @@
             "eea349c21da567ab",
             "d0ef76cfe1aea605"
         ],
-        "x": 1334,
-        "y": 119,
+        "x": 914,
+        "y": 359,
         "w": 452,
         "h": 82
     },
@@ -326,7 +330,54 @@
         "x": 34,
         "y": 19,
         "w": 412,
-        "h": 182
+        "h": 162
+    },
+    {
+        "id": "9fbcae5da98d5adf",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1c33954d1b3f8861",
+            "497514fcc2fe5067",
+            "71d9e95a6fcad008",
+            "4a57b00d5e73f7ca"
+        ],
+        "x": 28,
+        "y": 233,
+        "w": 1364,
+        "h": 234
+    },
+    {
+        "id": "43164d691411b98e",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "254ced6934606d41",
+            "681b61fe57f6f8f1",
+            "386025955fd402a6"
+        ],
+        "x": 474,
+        "y": 19,
+        "w": 432,
+        "h": 162
     },
     {
         "id": "edc2ff2e7629ee1f",
@@ -338,7 +389,7 @@
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
-        "keepalive": "60",
+        "keepalive": "30",
         "cleansession": true,
         "birthTopic": "",
         "birthQos": "0",
@@ -580,8 +631,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 580,
-        "y": 160,
+        "x": 160,
+        "y": 400,
         "wires": [
             [
                 "c458a4a7ae8b69dc"
@@ -650,8 +701,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 980,
-        "y": 160,
+        "x": 560,
+        "y": 400,
         "wires": [
             [
                 "b6add4265a5f0f36"
@@ -676,8 +727,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1200,
-        "y": 160,
+        "x": 780,
+        "y": 400,
         "wires": [
             [
                 "d0ef76cfe1aea605"
@@ -691,12 +742,12 @@
         "g": "4fdb42501c6eb39c",
         "name": "定时器",
         "props": [],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 130,
+        "x": 140,
         "y": 100,
         "wires": [
             [
@@ -774,7 +825,7 @@
             }
         ],
         "x": 340,
-        "y": 160,
+        "y": 140,
         "wires": []
     },
     {
@@ -791,8 +842,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 580,
-        "y": 60,
+        "x": 160,
+        "y": 300,
         "wires": [
             [
                 "1adab7068adf3ca4"
@@ -870,8 +921,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 980,
-        "y": 60,
+        "x": 560,
+        "y": 300,
         "wires": [
             [
                 "abcacca608d4ed7f"
@@ -896,8 +947,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1200,
-        "y": 60,
+        "x": 780,
+        "y": 300,
         "wires": [
             [
                 "92e7c447c849d547"
@@ -974,8 +1025,8 @@
                 "type": "num"
             }
         ],
-        "x": 770,
-        "y": 60,
+        "x": 350,
+        "y": 300,
         "wires": [
             [
                 "20c1bf0f53b40bba"
@@ -1000,8 +1051,8 @@
                 "type": "num"
             }
         ],
-        "x": 770,
-        "y": 160,
+        "x": 350,
+        "y": 400,
         "wires": [
             [
                 "e42fa0cff1235132"
@@ -1023,8 +1074,8 @@
         "correl": "",
         "expiry": "",
         "broker": "46e3e9b14bc5936a",
-        "x": 1640,
-        "y": 60,
+        "x": 1220,
+        "y": 300,
         "wires": []
     },
     {
@@ -1045,8 +1096,8 @@
                 "type": "str"
             }
         ],
-        "x": 1420,
-        "y": 60,
+        "x": 1000,
+        "y": 300,
         "wires": [
             [
                 "1fcc407194ba2ba4"
@@ -1068,8 +1119,8 @@
         "correl": "",
         "expiry": "",
         "broker": "1b8d30b2c9e534e5",
-        "x": 1640,
-        "y": 160,
+        "x": 1220,
+        "y": 400,
         "wires": []
     },
     {
@@ -1090,11 +1141,73 @@
                 "type": "str"
             }
         ],
-        "x": 1420,
-        "y": 160,
+        "x": 1000,
+        "y": 400,
         "wires": [
             [
                 "eea349c21da567ab"
+            ]
+        ]
+    },
+    {
+        "id": "254ced6934606d41",
+        "type": "debug",
+        "z": "b4b9370fa496a92d",
+        "g": "43164d691411b98e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "681b61fe57f6f8f1",
+        "type": "mqtt in",
+        "z": "b4b9370fa496a92d",
+        "g": "43164d691411b98e",
+        "name": "监听温湿度网关上下线",
+        "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-CCA2/connected",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "edc2ff2e7629ee1f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 600,
+        "y": 60,
+        "wires": [
+            [
+                "254ced6934606d41"
+            ]
+        ]
+    },
+    {
+        "id": "386025955fd402a6",
+        "type": "mqtt in",
+        "z": "b4b9370fa496a92d",
+        "g": "43164d691411b98e",
+        "name": "监听光照度网关上下线",
+        "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-CCA2/disconnected",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "edc2ff2e7629ee1f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 600,
+        "y": 140,
+        "wires": [
+            [
+                "254ced6934606d41"
             ]
         ]
     }
