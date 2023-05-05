@@ -265,6 +265,28 @@
         "h": 234
     },
     {
+        "id": "2a418347a07f70f1",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "网关上下线监听",
+        "style": {
+            "label": true,
+            "label-position": "n"
+        },
+        "nodes": [
+            "1d348ab9e8d8c03c",
+            "502eecdf5bc78bab",
+            "9b1d33e8c558e29a",
+            "160f0d12f2ceb0de",
+            "d2af2ac5ccd8c90f",
+            "e961fe19b268240b"
+        ],
+        "x": 474,
+        "y": 19,
+        "w": 592,
+        "h": 162
+    },
+    {
         "id": "1c33954d1b3f8861",
         "type": "group",
         "z": "b4b9370fa496a92d",
@@ -351,28 +373,6 @@
         "y": 359,
         "w": 352,
         "h": 82
-    },
-    {
-        "id": "2a418347a07f70f1",
-        "type": "group",
-        "z": "b4b9370fa496a92d",
-        "name": "网关上下线监听",
-        "style": {
-            "label": true,
-            "label-position": "n"
-        },
-        "nodes": [
-            "1d348ab9e8d8c03c",
-            "502eecdf5bc78bab",
-            "9b1d33e8c558e29a",
-            "160f0d12f2ceb0de",
-            "d2af2ac5ccd8c90f",
-            "e961fe19b268240b"
-        ],
-        "x": 474,
-        "y": 19,
-        "w": 592,
-        "h": 162
     },
     {
         "id": "edc2ff2e7629ee1f",
@@ -737,12 +737,12 @@
         "g": "4fdb42501c6eb39c",
         "name": "定时器",
         "props": [],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 140,
+        "x": 130,
         "y": 100,
         "wires": [
             [
