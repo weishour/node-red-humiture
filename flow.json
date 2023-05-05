@@ -12,7 +12,7 @@
         "type": "subflow",
         "name": "通过MQTT发送Modbus指令数据",
         "info": "通过MQTT发送Modbus指令从而获取设备数据",
-        "category": "network",
+        "category": "input",
         "in": [
             {
                 "x": 60,
@@ -110,8 +110,8 @@
         "color": "#a5b4fc",
         "icon": "@bitpoolos/edge-modbus/bitpool.svg",
         "status": {
-            "x": 980,
-            "y": 60,
+            "x": 280,
+            "y": 140,
             "wires": [
                 {
                     "id": "335f9c0b0127e39b",
@@ -222,6 +222,49 @@
         "icon": "font-awesome/fa-filter"
     },
     {
+        "id": "4fdb42501c6eb39c",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "name": "定时获取设备数据",
+        "style": {
+            "label": true,
+            "label-position": "n"
+        },
+        "nodes": [
+            "378f0e748ba13a06",
+            "8bd0c5a936191a8f",
+            "0b74790b431f5766"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 412,
+        "h": 162
+    },
+    {
+        "id": "9fbcae5da98d5adf",
+        "type": "group",
+        "z": "b4b9370fa496a92d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1c33954d1b3f8861",
+            "497514fcc2fe5067",
+            "71d9e95a6fcad008",
+            "4a57b00d5e73f7ca"
+        ],
+        "x": 28,
+        "y": 233,
+        "w": 1264,
+        "h": 234
+    },
+    {
         "id": "1c33954d1b3f8861",
         "type": "group",
         "z": "b4b9370fa496a92d",
@@ -285,7 +328,7 @@
         ],
         "x": 914,
         "y": 259,
-        "w": 452,
+        "w": 352,
         "h": 82
     },
     {
@@ -306,77 +349,29 @@
         ],
         "x": 914,
         "y": 359,
-        "w": 452,
+        "w": 352,
         "h": 82
     },
     {
-        "id": "4fdb42501c6eb39c",
+        "id": "2a418347a07f70f1",
         "type": "group",
         "z": "b4b9370fa496a92d",
+        "name": "网关上下线监听",
         "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
             "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
+            "label-position": "n"
         },
         "nodes": [
-            "378f0e748ba13a06",
-            "8bd0c5a936191a8f",
-            "0b74790b431f5766"
-        ],
-        "x": 34,
-        "y": 19,
-        "w": 412,
-        "h": 162
-    },
-    {
-        "id": "9fbcae5da98d5adf",
-        "type": "group",
-        "z": "b4b9370fa496a92d",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "1c33954d1b3f8861",
-            "497514fcc2fe5067",
-            "71d9e95a6fcad008",
-            "4a57b00d5e73f7ca"
-        ],
-        "x": 28,
-        "y": 233,
-        "w": 1364,
-        "h": 234
-    },
-    {
-        "id": "43164d691411b98e",
-        "type": "group",
-        "z": "b4b9370fa496a92d",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "254ced6934606d41",
-            "681b61fe57f6f8f1",
-            "386025955fd402a6"
+            "1d348ab9e8d8c03c",
+            "502eecdf5bc78bab",
+            "9b1d33e8c558e29a",
+            "160f0d12f2ceb0de",
+            "d2af2ac5ccd8c90f",
+            "e961fe19b268240b"
         ],
         "x": 474,
         "y": 19,
-        "w": 432,
+        "w": 592,
         "h": 162
     },
     {
@@ -552,8 +547,8 @@
         "scope": [
             "e8c2e4a8a66b3fce"
         ],
-        "x": 830,
-        "y": 60,
+        "x": 130,
+        "y": 140,
         "wires": [
             []
         ]
@@ -622,7 +617,7 @@
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
         "g": "1c33954d1b3f8861",
-        "name": "光照度网关发送",
+        "name": "A48A网关发送",
         "topic": "ws/test/a48a/send",
         "qos": "2",
         "datatype": "auto-detect",
@@ -631,7 +626,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 160,
+        "x": 150,
         "y": 400,
         "wires": [
             [
@@ -833,7 +828,7 @@
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
         "g": "497514fcc2fe5067",
-        "name": "温湿度网关发送",
+        "name": "CCA2网关发送",
         "topic": "ws/test/cca2/send",
         "qos": "2",
         "datatype": "auto-detect",
@@ -1064,7 +1059,7 @@
         "type": "mqtt out",
         "z": "b4b9370fa496a92d",
         "g": "71d9e95a6fcad008",
-        "name": "",
+        "name": "CCA2-1遥测",
         "topic": "ws/devices/cca2-1/telemetry",
         "qos": "2",
         "retain": "false",
@@ -1074,7 +1069,7 @@
         "correl": "",
         "expiry": "",
         "broker": "46e3e9b14bc5936a",
-        "x": 1220,
+        "x": 1170,
         "y": 300,
         "wires": []
     },
@@ -1109,7 +1104,7 @@
         "type": "mqtt out",
         "z": "b4b9370fa496a92d",
         "g": "4a57b00d5e73f7ca",
-        "name": "",
+        "name": "A48A-2遥测",
         "topic": "ws/devices/a48a-2/telemetry",
         "qos": "2",
         "retain": "false",
@@ -1119,7 +1114,7 @@
         "correl": "",
         "expiry": "",
         "broker": "1b8d30b2c9e534e5",
-        "x": 1220,
+        "x": 1170,
         "y": 400,
         "wires": []
     },
@@ -1150,29 +1145,11 @@
         ]
     },
     {
-        "id": "254ced6934606d41",
-        "type": "debug",
-        "z": "b4b9370fa496a92d",
-        "g": "43164d691411b98e",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "681b61fe57f6f8f1",
+        "id": "1d348ab9e8d8c03c",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
-        "g": "43164d691411b98e",
-        "name": "监听温湿度网关上下线",
+        "g": "2a418347a07f70f1",
+        "name": "CCA2网关上线",
         "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-CCA2/connected",
         "qos": "2",
         "datatype": "auto-detect",
@@ -1181,20 +1158,20 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 600,
+        "x": 580,
         "y": 60,
         "wires": [
             [
-                "254ced6934606d41"
+                "9b1d33e8c558e29a"
             ]
         ]
     },
     {
-        "id": "386025955fd402a6",
+        "id": "502eecdf5bc78bab",
         "type": "mqtt in",
         "z": "b4b9370fa496a92d",
-        "g": "43164d691411b98e",
-        "name": "监听光照度网关上下线",
+        "g": "2a418347a07f70f1",
+        "name": "CCA2网关下线",
         "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-CCA2/disconnected",
         "qos": "2",
         "datatype": "auto-detect",
@@ -1203,12 +1180,92 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 600,
+        "x": 780,
+        "y": 60,
+        "wires": [
+            [
+                "9b1d33e8c558e29a"
+            ]
+        ]
+    },
+    {
+        "id": "9b1d33e8c558e29a",
+        "type": "debug",
+        "z": "b4b9370fa496a92d",
+        "g": "2a418347a07f70f1",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "160f0d12f2ceb0de",
+        "type": "mqtt in",
+        "z": "b4b9370fa496a92d",
+        "g": "2a418347a07f70f1",
+        "name": "A48A网关上线",
+        "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-A48A/connected",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "edc2ff2e7629ee1f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 570,
         "y": 140,
         "wires": [
             [
-                "254ced6934606d41"
+                "e961fe19b268240b"
             ]
         ]
+    },
+    {
+        "id": "d2af2ac5ccd8c90f",
+        "type": "mqtt in",
+        "z": "b4b9370fa496a92d",
+        "g": "2a418347a07f70f1",
+        "name": "A48A网关下线",
+        "topic": "$SYS/brokers/emqx@127.0.0.1/clients/WS-TEST-A48A/disconnected",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "edc2ff2e7629ee1f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "e961fe19b268240b"
+            ]
+        ]
+    },
+    {
+        "id": "e961fe19b268240b",
+        "type": "debug",
+        "z": "b4b9370fa496a92d",
+        "g": "2a418347a07f70f1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 140,
+        "wires": []
     }
 ]
