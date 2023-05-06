@@ -233,7 +233,8 @@
         "nodes": [
             "378f0e748ba13a06",
             "8bd0c5a936191a8f",
-            "0b74790b431f5766"
+            "0b74790b431f5766",
+            "c8b0c304b335da20"
         ],
         "x": 34,
         "y": 19,
@@ -375,10 +376,24 @@
         "h": 82
     },
     {
+        "id": "c8b0c304b335da20",
+        "type": "junction",
+        "z": "b4b9370fa496a92d",
+        "g": "4fdb42501c6eb39c",
+        "x": 220,
+        "y": 100,
+        "wires": [
+            [
+                "0b74790b431f5766",
+                "8bd0c5a936191a8f"
+            ]
+        ]
+    },
+    {
         "id": "edc2ff2e7629ee1f",
         "type": "mqtt-broker",
         "name": "emqx的mqtt节点",
-        "broker": "127.0.0.1",
+        "broker": "124.222.92.145",
         "port": "1884",
         "clientid": "WS-NR-CLIENT",
         "autoConnect": true,
@@ -405,9 +420,9 @@
         "id": "46e3e9b14bc5936a",
         "type": "mqtt-broker",
         "name": "thingsboard的mqtt节点(cca2-1)",
-        "broker": "127.0.0.1",
+        "broker": "124.222.92.145",
         "port": "1883",
-        "clientid": "",
+        "clientid": "ws-weishour-cca2-1",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
@@ -432,9 +447,9 @@
         "id": "1b8d30b2c9e534e5",
         "type": "mqtt-broker",
         "name": "thingsboard的mqtt节点(a48a-2)",
-        "broker": "127.0.0.1",
+        "broker": "124.222.92.145",
         "port": "1883",
-        "clientid": "",
+        "clientid": "ws-weishour-a48a-2",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": "5",
@@ -746,8 +761,7 @@
         "y": 100,
         "wires": [
             [
-                "8bd0c5a936191a8f",
-                "0b74790b431f5766"
+                "c8b0c304b335da20"
             ]
         ]
     },
